@@ -1,0 +1,12 @@
+1.atendimentos anexam imagens na tabela UPLOAD com tipos B, P, F e D (boletim, prescricao, finalizacao, despesas)
+    relacionamento é atraves dos campos tipo=(B,P,F,D) e identificador (id_atendimento)
+
+2.autorizacoes anexam imagens na tabela UPLOAD com tipo A autorizacao)
+    relacionamento é atraves dos campos tipo='A' e identificador (id_upload)
+    autorizacoes tem vários tipos (R, A, H, F, Q, B, S)
+    somente tipos A e H (ambulatoriais e hopitalar) guardam imagens na tabela UPLOAD
+    
+3. tabela UPLOAD, contem tipo de upload e identificador que pode varia conforme o tipo
+
+
+

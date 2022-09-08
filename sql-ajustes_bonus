@@ -1,0 +1,22 @@
+select * from atendimento where id_juridica=550 order by dt_alteracao desc
+select * from atendimento where id_medico=1524 order by dt_alteracao desc
+select * from log where id_medico=1524
+select * from servico where id_servico=2
+tabela ='PH'
+
+select matricula, count(*) from atendimento a inner join pessoas using (id_pessoa) 
+where a.dt_alteracao > '2020-11-01' and a.situacao='B' group by matricula
+
+select matricula,
+(   select count(*) from atendimento a inner join pessoas using (id_pessoa) 
+   where a.dt_alteracao > '2020-11-01' and a.situacao='B' and matricula=p.matricula
+) as bonus
+, * from atendimento a inner join pessoas p using (id_pessoa) 
+where (   select count(*) from atendimento a inner join pessoas using (id_pessoa) 
+   where a.dt_alteracao > '2020-11-01' and a.situacao='B' and matricula=p.matricula
+) < 5 and a.dt_alteracao > '2021-11-01' and a.excedente='S' and a.situacao='A' and p.matricula in (
+   select matricula from atendimento a inner join pessoas using (id_pessoa) 
+   where a.dt_alteracao > '2020-11-01' and a.situacao='B'
+)
+order by matricula, a.dt_Alteracao
+

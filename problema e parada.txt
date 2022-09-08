@@ -1,0 +1,27 @@
+
+1. o banco atual prevpel2 está com o encode sql-ascii.
+   ao converter todos comandos de odbc para npgsql, o driver npgsql versao 2.0 não consegue
+   entender os caracteres do banco asc99, gerando erros nas consultas quando elas tem caractres especiais ou acentos.
+     opção 1. converter o banco para utf-8 e para o novo servidor e seguir projeto
+     opção 2. atualizar driver npgsql, o que ocasiona a obrigatoriedade de atualizar o frame work (4 para 4.5) do sistema biosifam 
+         (mais problemas) talvez alguns windows não funcionem nos clientes.
+     opção 3. utilizar funcao de conversão no select dos campos , fazendo a conversão quando necessárioa.
+
+   Escolha: opção 3
+
+2. testar nos clientes o funcionamento do novo driver. 
+   2.1 verificar se vai funcionar sem os arquivos Npgsql.dll, Mono.Security.dll, stdole.dll
+   2.2 verificar se vai se necessária alguma instalação extra nos clientes já instalados.
+   2.3 substituir o pacotes o driver odbc pelo native postgre. - testar funcionamento instalação zerada.
+   2.4 inserir novos driver native no pacote de upgrade, verificar funcionamento.
+
+3. testar o reconhecimento das digitais.   
+   3.1 testar reconhecimento de digitias já existentes.
+   3.2 salvar novas digitais e verificar identificação somente com as novas
+   3.3 testar identificação cruzada entre os drivers.
+
+4. testar gravação de consulta com digital.
+
+5. Se tudo ok, liberar nova versão.
+
+

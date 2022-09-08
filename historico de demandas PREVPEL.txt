@@ -1,0 +1,144 @@
+08/07/21 - reuniao
+    1- revisar objetivos anteriores
+          1.1 autorizacoes
+       
+    2- problemas relatados no dia
+          2.1 uso tabela cbhpm
+          2.2 funcionamaneto fisica/juridica/convenio vinculado
+               explicado para carol, aceitou o procedimento
+               falta fred acertar site.
+          2.3 relatorio fisioterapia por paciente, ordem de data, com horario
+          2.4 nova nomenclatura OFFLINE
+              2.4.1 BNI - biometria nao identificada
+              2.4.2 RPJ - registro posterior justificado - justificativa
+          2.5 ajustamos email do FAM para melhorar retorno ao publico/conveniados
+
+
+Vista X x OftalmoPampa
+
+
+20/07/2021- Oftalmopampa (flavia)- marcelo teixeira - ok virou clinica
+
+20/07/2021 - pronto cor - (thais) ajustei servicos conforme pedido por tatiane
+ select * from SERVICO where DESCRICAO LIKE 'PRONTO%' order by DESCRICAO
+ update servico set ATIVO='N' where id_servico=16952
+  update servico set DESCRICAO='PRONTO ATENDIMENTO - CONSULTA' where id_servico=16950
+
+iecad
+cristina barcelos, luiza weimar, inst.medicina, renata marques, luana, daniela.
+
+21/07/2021 - pronto cor - (thais) ajustei servicos conforme pedido por tatiane
+ select * from SERVICO where DESCRICAO LIKE 'PRONTO%' order by DESCRICAO
+ update servico set ATIVO='N' where id_servico=16952
+  update servico set DESCRICAO='PRONTO ATENDIMENTO - CONSULTA' where id_servico=16950
+
+  
+situações que devem ser atendidas pela prevpel e nao sac , desenvovlimento
+
+1. erro nos valores de exames.
+2. cancelamentos de exames e atendimentos
+3. liberação para lancamento pos 5 dias.
+4. explicar funcionamento NC
+
+
+exemplo publicador coinpel - https://www.pelotas.com.br/publicacoes/coinpel
+https://www.pelotas.com.br/publicacoes/coinpel-salarios
+https://www.pelotas.com.br/publicacoes/coinpel-licitacoes
+
+
+problemas, publicação de vídeos e outros links
+erro ao salvar pdf..
+possivel linkar um documento sem um dos níveis (sem grupo por exemplo), direto no setor ?
+
+posição em 22/09/2021
+=====================
+1.questão do off x não comparecido - nos relatórios	 - corrigido ok
+2.nova abrangencia do BNI - agora com não localizados
+3.nutricionista - validacao de limites é por matricula   - corrigido ok
+4.testar 2 consultas RPJ no mesmo dia                    - corrigido ok
+5.erro na importação cadastro
+
+6.Mauricio Guimaraes - alteracao - corrigido valor ok
+7.daniela megiatto - solicitou correção e cancelamento de consultas-email para suporte
+8.prontocor - exclusão de lancamento (cancelamento) - resolvido ok
+
+9.reuniao 10hs
+10.segurança
+
+prevpel 1.compra tabela cbhpm
+        2.compra creditos sms
+        3.novo layout página - Conveniados
+        4.publicador documentos
+        5.autorizações p/exames->fechamento financeiro->consignação
+        6.verifica situação Santa Casa x IECAD
+
+
+Tecnicas de segurança
+1- .config + criptografia
+2- desfuscator
+3- servidor de aplicacao
+4- click once - atualiza antes logar
+
+revoke ALL ON TABLE public.agencia from ubiosifam;
+
+select
+atendimento_autorizacao
+atendimento
+atendimento_justificativa
+atendimento_servico
+leitor_biometrico
+pessoas
+digital
+servico
+fisioterapia_sessoes
+prestador
+prestador_servicos
+aplicacao
+usuario
+grupo, usuario_grupo
+mensagem
+mensagem_usuario
+parametros
+tipo_usuario
+
+INSERT INTO historico
+atendimento_justificativa
+atendimento_autorizacao
+mensagem_usuario
+workstation
+leitor_biometrico
+atendimento
+atendimento_servico
+atendimento_justificativa
+leitor_biometrico
+consulta_gravida
+
+UPDATE atendimento_servico
+atendimento
+atendimento_autorizacao
+atendimento_justificativa
+workstation
+pessoas
+
+delete from digital
+atendimento_servico
+digital_usuario
+
+
+28/10/2021
+mesma matricula.
+med 2 mes int 15d, bonus a q.q. momento.
+nut 1 mes sem bonus, 
+odo 2 mes  int 15d, bonus a q.q. momento.
+bonu 1 cada 30 dias
+excedente q.q. momento.
+
+teste com mara, dr. pablo, matricula. larissa silveira 21855
+
+
+testes
+2 consultas a cada 30 dias (2 medicas 2 odonto) + 5 bonus - fora do 15 dias
+
+
+
+

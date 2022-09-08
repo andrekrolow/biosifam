@@ -1,0 +1,22 @@
+Restrições do sistema Biosifam e Sistema de testes:
+
+1. Só pode ocorrer uma consulta à nutricionista por matricula a cada 30 dias.
+    teste: registrar consulta teste com titular 40 dias retroativos. sistema aceita consulta.
+           registrar consulta teste com dependente com 30 dias retroativos. sistema aceita consulta.
+           registrar consulta teste com titular com 15 dias retroativos. sistema recusa consulta.
+           atenção, registrou consulta hoje, amanha registra offline de ontem.<- verificar para frente.
+
+    teste ok 18/08/2021
+
+2. Só pode ocorrer 3 consulta à fisioterapeuta por pessoa na semana corrente.
+    teste: registrar consulta teste com titular 3 dias retroativos. sistema aceita consulta.
+           registrar consulta teste com titular 2 dias retroativos. sistema aceita consulta.
+           registrar consulta teste com titular 1 dias retroativos. sistema aceita consulta.
+           registrar consulta teste com titular no dia corrente. sistema recusa consulta.
+    teste ok 18/08/2021
+
+
+
+
+
+

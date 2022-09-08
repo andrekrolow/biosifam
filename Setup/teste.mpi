@@ -1,0 +1,65 @@
+; Projeto gerado pelo Assistente de Projeto do Mep Installer.
+; VEJA A DOCUMENTAÇÃO PARA OBTER DETALHES SOBRE A CRIAÇÃO DE PROJETOS DO MEP INSTALLER!
+
+[Setup]
+AppName=BioSifam
+AppVerName=BioSifam 1.6.84
+AppId=BioSifam ID
+AppPublisher=COINPEL
+AppPublisherURL=http://www.coinpel.com.br/downloads
+AppSupportURL=http://www.coinpel.com.br/downloads
+AppUpdatesURL=http://www.coinpel.com.br/downloads
+
+DefaultDirName={pf}\COINPEL\BioSifam
+DefaultGroupName=COINPEL\BioSifam - Controle Biométrico de Consultas
+
+InfoAfterFile=ReadMe.rtf
+WizardImageFile=big_logo.bmp
+WizardSmallImageFile=small_logo.bmp
+
+OutputDir=\\fs01\Coinpel\Desenv\Projetos .NET\BioSifam\setup
+OutputBaseFilename=setup_BioSifam_1.6.84
+
+; 1.1.0 - novo driver dentro do form, identificação também por senha
+
+SetupIMG=Setup.img
+Compression=lzma/max
+SolidCompression=yes
+PrivilegesRequired=none
+NotifyUpdate=yes
+UninstallFilesDir={app}\uninst
+
+[Components]
+Name: "main_frame"; Description: "Engine do Sistema (FrameWork 4.0)"; Types: full
+Name: "main_griaule"; Description: "Licenciamento Leitor Digital"; Types: full
+Name: "main_driver"; Description: "Driver Leitor Digital"; Types: full
+
+[Types]
+Name: "full"; Description: "Instalação Completa"
+Name: "compact"; Description: "Atualização rápida"
+
+[Tasks]
+;Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; Components: "{cm:AdditionalIcons}"; Flags: unchecked
+Name: "versaogriaule32"; Description: "windows 32bits"; Components: main_driver; Flags: unchecked
+Name: "versaogriaule64"; Description: "windows 64bits"; Components: main_driver; Flags: unchecked
+
+[Files]
+Source: "\\fs01\Coinpel\Desenv\Projetos .NET\BioSifam\Biosifam\bin\debug\BioSifam.exe"; DestDir: "{app}"; Flags: ignoreversion; Permissions: users-modify
+source: "\\fs01\coinpel\Desenv\Projetos .NET\DLLs Extras\Leitor Digital\Drivers\Driver_Fingerprint_DP00_02_008_Ago2010_32bits.msi"; DestDir: "{app}"; Flags: onlyifdoesntexist; Components: main_driver
+Source: "\\fs01\coinpel\Desenv\Projetos .NET\DLLs Extras\Leitor Digital\Drivers\Driver_Fingerprint_DP00_02_008_Ago2010_64bits.msi"; DestDir: "{app}"; Flags: onlyifdoesntexist; Components: main_driver
+Source: "\\fs01\coinpel\Desenv\Projetos .NET\DLLs Extras\Leitor Digital\Drivers\Driver_Fingerprint_DP00_02_008_Ago2010_32bits.exe"; DestDir: "{app}"; Flags: onlyifdoesntexist; Components: main_driver
+Source: "\\fs01\coinpel\Desenv\Projetos .NET\DLLs Extras\Leitor Digital\Drivers\Driver_Fingerprint_DP00_02_008_Ago2010_64bits.exe"; DestDir: "{app}"; Flags: onlyifdoesntexist; Components: main_driver
+Source: "\\fs01\coinpel\Desenv\Projetos .NET\DLLs Extras\Leitor Digital\GriauleLicenseManager.exe"; DestDir: "{app}"; Flags: onlyifdoesntexist; Components: main_griaule
+Source: "\\fs01\coinpel\Desenv\Projetos .NET\DLLs Extras\Leitor Digital\GriauleLicenseManager.sqlite"; DestDir: "{app}"; Flags: deleteafterinstall onlyifdoesntexist; Components: main_griaule
+
+[Icons]
+Name: "{group}\BioSifam"; Filename: "{app}\BioSifam.exe"; WorkingDir: "{app}"
+Name: "{group}\Desinstalação\Desinstalador do BioSifam"; Filename: "{uninstallexe}"
+Name: "{commondesktop}\BioSifam"; Filename: "{app}\BioSifam.exe";
+; Tasks: desktopicon;
+
+[Run]
+Filename: "{app}\GriauleLicenseManager.exe"; Description: "Licenciador Griaule"; Flags: hidewizard  skipifsilent waituntilterminated; Components: main_griaule
+Filename: "{app}\Driver_Fingerprint_DP00_02_008_Ago2010_32bits.exe"; Description: "Driver Fingerprint"; Flags: waituntilterminated; Components: main_driver; Tasks: versaogriaule32;
+Filename: "{app}\Driver_Fingerprint_DP00_02_008_Ago2010_64bits.exe"; Description: "Driver Fingerprint"; Flags: waituntilterminated; Components: main_driver; Tasks: versaogriaule64;
+

@@ -1,0 +1,18 @@
+﻿insert into atendimento_autorizacao (matricula, id_prestador,id_pessoa, data, sessoes_autorizadas,  sessoes_realizadas ,  situacao, tipo, solicitante , solicitante_tipo_doc ,
+ solicitante_documento, codigo_procedimento ,  observacao ,  autorizacao_medica , prazos, login, ip ,  dt_alteracao )
+
+  
+select p.matricula::integer, id_medicos, id_requisitante, dt_cadastro, 
+( select count(*) from fisioterapia_sessoes where dt_alteracao =fs.dt_cadastro and id_medicos=fs.id_medicos and id_requisitante=fs.id_requisitante  ) autorizadas, 
+	 count(*) as realizadas,  'A','F','','','','','importação sistema antigo', 'sem_autorizacao',0,
+  'administrador','192.168.0.1', current_date
+  from fisioterapia_sessoes fs left join pessoas p on p.id_pessoa=fs.id_pessoa where realizada='N' and fs.dt_alteracao > '2021-01-01' and fs.id_pessoa<> fs.id_requisitante 
+and p.id_pessoa not in (select id_pessoa from atendimento_autorizacao where tipo='F') 
+  group by p.matricula,id_medicos, id_requisitante,dt_cadastro
+
+select *  from atendimento_autorizacao where tipo='F' 
+
+select count(*), matricula  from atendimento_autorizacao where tipo='F' group by matricula having count(*) > 1
+29 - 167-198
+
+revoke ALL ON TABLE public.fisioterapia_sessoes from ubiosifam;

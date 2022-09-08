@@ -1,0 +1,100 @@
+; Projeto gerado pelo Assistente de Projeto do Mep Installer.
+; VEJA A DOCUMENTAÇÃO PARA OBTER DETALHES SOBRE A CRIAÇÃO DE PROJETOS DO MEP INSTALLER!
+; 01/08/18 - retirei da instalação framework microsoft e instalador msi - atualizei driver obdc
+; 1.1.0 - novo driver dentro do form, identificação também por senha
+[Setup]
+AppName=BioSifam
+AppVerName=BioSifam 2.2.00 gerado em 01/10/2021
+AppId=BioSifam ID
+AppPublisher=COINPEL
+AppPublisherURL=http://www.pelotas.com.br/coinpel/downloads
+AppSupportURL=http://www.pelotas.com.br/coinpel/downloads
+AppUpdatesURL=http://www.pelotas.com.br/coinpel/downloads
+
+DefaultDirName={pf}\COINPEL\BioSifam
+DefaultGroupName=COINPEL\BioSifam - Registro Biométrico de Atendimentos Médicos da PREVPEL
+
+;InfoAfterFile=ReadMe.rtf
+WizardImageFile=logo_coinpel_big.bmp
+WizardSmallImageFile=logo_coinpel_small.bmp
+
+OutputDir=C:\Users\andre\desktop
+OutputBaseFilename=setup_BioSifam_2.2.00
+
+SetupIMG=Setup.img
+Compression=lzma/max
+SolidCompression=yes
+PrivilegesRequired=none
+;NotifyUpdate=yes
+UninstallFilesDir={app}\uninst
+
+[Components]
+Name: "main_postg";          Description: "Conector do Banco de Dados";   Types: full;
+Name: "main_griaule";        Description: "SDK Griaule FingerPrint";      Types: full;
+Name: "driverdigital32";     Description: "Leitor Digital Persona Win32"; Types: full; Flags: exclusive
+Name: "driverdigital64";     Description: "Leitor Digital Persona Win64"; Types: full; Flags: exclusive
+;Name: "driverfutronicfs80h"; Description: "Leitor Futronic fs80h";        Types: full; Flags: exclusive
+Name: "driverfutronicfs80";  Description: "Leitor Futronic fs80";         Types: full; Flags: exclusive
+;o futornic fs80h foi desabilitado, dá erro na utilização
+
+;Name: "main_teamviewer"; Description: "Acesso Remoto"; Types: full
+
+[Types]
+Name: "full"; Description: "Instalação Completa"
+;Name: "compact"; Description: "Atualização rápida"
+Name: "custom"; Description: "Instalação Customizada"; Flags: iscustom
+
+[Languages]
+Name: "portuguesebr"; MessagesFile: "compiler:Languages\PortugueseBR.isl"
+
+[Tasks]
+Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked
+
+[Files]
+Source: "C:\Users\andre\Dropbox\Projetos COINPEL\Projetos .Net\biosifam\Biosifam\bin\Debug\biosifam.exe"; DestDir: "{app}"; Flags: ignoreversion; Permissions: users-modify
+Source: "C:\Users\andre\Dropbox\Projetos COINPEL\Projetos .Net\biosifam\Biosifam\bin\Debug\biosifam.exe.config"; DestDir: "{app}"; Flags: ignoreversion; Permissions: users-modify
+Source: "C:\Users\andre\Dropbox\Projetos COINPEL\Projetos .Net\biosifam\Biosifam\bin\Debug\Npgsql.dll"; DestDir: "{tmp}"; Flags: onlyifdoesntexist; Components: main_postg
+Source: "C:\Users\andre\Dropbox\Projetos COINPEL\Projetos .Net\biosifam\Biosifam\bin\Debug\Mono.Security.dll"; DestDir: "{tmp}"; Flags: onlyifdoesntexist; Components: main_postg
+Source: "C:\Users\andre\Dropbox\Projetos COINPEL\Projetos .Net\biosifam\Biosifam\bin\Debug\stdole.dll"; DestDir: "{tmp}"; Flags: onlyifdoesntexist; Components: main_postg
+Source: "C:\Users\andre\Dropbox\Projetos COINPEL\Projetos .Net\biosifam\Biosifam\bin\Debug\WinSCP.exe"; DestDir: "{tmp}"; Flags: onlyifdoesntexist; Components: main_postg
+Source: "C:\Users\andre\Dropbox\Projetos COINPEL\Projetos .Net\biosifam\Biosifam\bin\Debug\WinSCPnet.dll"; DestDir: "{tmp}"; Flags: onlyifdoesntexist; Components: main_postg
+;Source: "C:\Users\Andre.Krolow\Dropbox\Projetos_WEB\downloads\tools\setup_odbc_postgreSQL_x86.exe";              DestDir: "{tmp}"; Flags: onlyifdoesntexist; Components: main_postg
+;Source: "C:\Users\Andre.Krolow\Dropbox\Projetos_WEB\downloads\tools\teamviewer12_setup_pt.exe"; DestDir: "{app}"; Flags: onlyifdoesntexist; Components: main_teamviewer
+
+; primeiros leitores
+Source: "C:\Users\andre\Dropbox\Projetos COINPEL\Projetos .Net\biosifam\drivers\driver_digital_persona_v4.3.0.1766_x64_17-08-2010.exe"; DestDir: "{app}"; Flags: deleteafterinstall onlyifdoesntexist; Components: driverdigital64;
+Source: "C:\Users\andre\Dropbox\Projetos COINPEL\Projetos .Net\biosifam\drivers\driver_digital_persona_v4.3.0.1766_x86_17-08-2010.exe"; DestDir: "{app}"; Flags: deleteafterinstall onlyifdoesntexist; Components: driverdigital32;
+;Source: "C:\Users\andre\Dropbox\Projetos COINPEL\Projetos .Net\biosifam\drivers\driver_futronic_fs80h_v8.0.2307.473.exe";               DestDir: "{app}"; Flags: deleteafterinstall onlyifdoesntexist; Components: driverfutronicfs80h;
+;Source: "C:\Users\andre\Dropbox\Projetos COINPEL\Projetos .Net\biosifam\drivers\atualizacao_futronic_fs80h.exe";                        DestDir: "{app}"; Flags: deleteafterinstall onlyifdoesntexist; Components: driverfutronicfs80h;
+;Source: "C:\Users\andre\Dropbox\Projetos COINPEL\Projetos .Net\biosifam\drivers\driver_futronic_fs80_v4.0.1.5.exe";                     DestDir: "{app}"; Flags: deleteafterinstall onlyifdoesntexist; Components: driverfutronicfs80;
+
+Source: "C:\Users\andre\Dropbox\Projetos COINPEL\Projetos .Net\biosifam\drivers\Fingerprint_SDK_2009_Installer.exe"; DestDir: "{app}"; Flags: deleteafterinstall onlyifdoesntexist; Components: main_griaule
+Source: "C:\Users\andre\Dropbox\Projetos COINPEL\Projetos .Net\biosifam\Biosifam\bin\Debug\GrFingerLicenseAgreement.txt";    DestDir: "{pf}\Griaule\Fingerprint SDK 2009\bin"; Flags: onlyifdoesntexist; Components: main_griaule
+Source: "C:\Users\andre\Dropbox\Projetos COINPEL\Projetos .Net\biosifam\Biosifam\bin\debug\Interop.GrFingerXLib.dll";        DestDir: "{app}"; Flags: onlyifdoesntexist; Components: main_griaule
+Source: "C:\Users\andre\Dropbox\Projetos COINPEL\Projetos .Net\biosifam\Biosifam\bin\debug\AxInterop.GrFingerXLib.dll";      DestDir: "{app}"; Flags: onlyifdoesntexist; Components: main_griaule
+;Source: "C:\Users\andre\Dropbox\Projetos COINPEL\Projetos .Net\BioSifam\Biosifam\bin\debug\stdole.dll";                   DestDir: "{app}"; Flags: onlyifdoesntexist; Components: main_griaule
+
+; NOTA: Nunca use "Flags: ignoreversion" em arquivos de sistema compartilhados
+
+[Icons]
+Name: "{group}\BioSifam";                                Filename: "{app}\BioSifam.exe"; WorkingDir: "{app}"
+Name: "{group}\Desinstalação\Desinstalador do BioSifam"; Filename: "{uninstallexe}"
+Name: "{commondesktop}\BioSifam";                        Filename: "{app}\BioSifam.exe"; Tasks: desktopicon;
+
+[Run]
+;Filename: "msiexec.exe"; Parameters: " /i {tmp}\setup_odbc_postgreSQL_x86.exe"; StatusMsg: "Instalando ODBC Postgres ..." ; Description: "Conector do Banco de Dados";
+; desabilitei para o driver nativo
+;Filename: "{tmp}\setup_odbc_postgreSQL_x86.exe"; StatusMsg: "Instalando ODBC Postgres ..." ; Description: "Conector do Banco de Dados";
+;Filename: "{app}\GriauleLicenseManager.exe"; Description: "Licenciador Griaule"; Flags: hidewizard  skipifsilent waituntilterminated; Components: main_griaule
+
+Filename: "{app}\driver_digital_persona_v4.3.0.1766_x86_17-08-2010.exe"; Description: "Driver Digital Personal Win32"; Flags: waituntilterminated; Components: driverdigital32;
+Filename: "{app}\driver_digital_persona_v4.3.0.1766_x64_17-08-2010.exe"; Description: "Driver Digital Personal Win64"; Flags: waituntilterminated; Components: driverdigital64;
+Filename: "{app}\driver_futronic_fs80_v4.0.1.5.exe";                     Description: "Driver Futronic fs80";          Flags: waituntilterminated; Components: driverfutronicfs80;
+;Filename: "{app}\driver_futronic_fs80h_v8.0.2307.473.exe";               Description: "Driver Futronic fs80h";         Flags: waituntilterminated; Components: driverfutronicfs80h;
+;Filename: "{app}\atualizacao_futronic_fs80h.exe";                        Description: "Atualização para fs80h";        Flags: waituntilterminated; Components: driverfutronicfs80h;
+
+Filename: "{app}\Fingerprint_SDK_2009_Installer.exe";                    Description: "SDK Griaule FingerPrint";       Flags: waituntilterminated; Components: main_griaule;
+
+Filename: "{app}\BioSifam.exe"; Description: "{cm:LaunchProgram,BioSifam.exe}"; Flags: nowait postinstall
+
+

@@ -1,0 +1,88 @@
+; Projeto gerado pelo Assistente de Projeto do Mep Installer.
+; VEJA A DOCUMENTAÇÃO PARA OBTER DETALHES SOBRE A CRIAÇÃO DE PROJETOS DO MEP INSTALLER!
+; 01/08/18 - retirei da instalação framework microsoft e instalador msi - atualizei driver obdc
+; 1.1.0 - novo driver dentro do form, identificação também por senha
+[Setup]
+AppName=BioSifam
+AppVerName=BioSifam 1.9.03 gerado em  09/11/2020
+AppId=BioSifam ID
+AppPublisher=COINPEL
+AppPublisherURL=http://www.pelotas.com.br/coinpel/downloads
+AppSupportURL=http://www.pelotas.com.br/coinpel/downloads
+AppUpdatesURL=http://www.pelotas.com.br/coinpel/downloads
+
+
+DefaultDirName={pf}\COINPEL\BioSifam
+DefaultGroupName=COINPEL\BioSifam - Registro Biométrico de Atendimentos Médicos da PREVPEL
+
+InfoAfterFile=ReadMe.rtf
+WizardImageFile=big_logo.bmp
+WizardSmallImageFile=small_logo.bmp
+
+OutputDir=C:\Users\andre.krolow\Dropbox\Projetos COINPEL\Projetos .Net\BioSifam\setup
+OutputBaseFilename=setup_BioSifam_1.9.03
+
+SetupIMG=Setup.img
+Compression=lzma/max
+SolidCompression=yes
+PrivilegesRequired=none
+;NotifyUpdate=yes
+UninstallFilesDir={app}\uninst
+
+[Components]
+Name: "main_postg"; Description: "Conector do Banco de Dados"; Types: full; Flags:fixed
+Name: "main_griaule"; Description: "Licenciamento Leitor Digital"; Types: full
+Name: "driverdigital32"; Description: "Leitor Digital Persona Win32"; Types: full; Flags: exclusive
+Name: "driverdigital64"; Description: "Leitor Digital Persona Win64"; Types: full; Flags: exclusive
+Name: "driverfutronicfs80"; Description: "Leitor Futronic fs80"; Types: full; Flags: exclusive
+Name: "driverfutronicfs80h"; Description: "Leitor Futronic fs80h"; Types: full; Flags: exclusive
+
+[Types]
+Name: "full"; Description: "Instalação Completa"
+;Name: "compact"; Description: "Atualização rápida"
+Name: "custom"; Description: "Instalação Customizada"; Flags: iscustom
+
+[Languages]
+Name: "portuguesebr"; MessagesFile: "compiler:Languages\PortugueseBR.isl"
+
+[Tasks]
+Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked
+
+[Files]
+Source: "C:\Users\andre.krolow\Dropbox\Projetos COINPEL\Projetos .Net\BioSifam\Biosifam\bin\debug\BioSifam.exe"; DestDir: "{app}"; Flags: ignoreversion; Permissions: users-modify
+;Source: "C:\Users\andre.krolow\Dropbox\Projetos COINPEL\Projetos .Net\BioSifam\Biosifam\bin\debug\k2Mail.exe"; DestDir: "{app}"; Flags: ignoreversion; Permissions: users-modify
+
+Source: "C:\Users\andre.krolow\Dropbox\Projetos_WEB\downloads\tools\psqlodbc10.1_x86.exe"; DestDir: "{tmp}"; Flags: onlyifdoesntexist; Components: main_postg
+
+; primeiros leitores
+Source: "C:\Users\andre.krolow\Dropbox\Projetos COINPEL\Projetos .Net\drivers\driver_digital_persona_v4.3.0.1766_x64_17-08-2010.exe"; DestDir: "{app}"; Flags: onlyifdoesntexist; Components: driverdigital64;
+Source: "C:\Users\andre.krolow\Dropbox\Projetos COINPEL\Projetos .Net\drivers\driver_digital_persona_v4.3.0.1766_x86_17-08-2010.exe"; DestDir: "{app}"; Flags: onlyifdoesntexist; Components: driverdigital32;
+Source: "C:\Users\andre.krolow\Dropbox\Projetos COINPEL\Projetos .Net\drivers\driver_futronic_fs80_v4.0.1.5.exe"; DestDir: "{app}"; Flags: onlyifdoesntexist; Components: driverfutronicfs80;
+Source: "C:\Users\andre.krolow\Dropbox\Projetos COINPEL\Projetos .Net\drivers\driver_futronic_fs80h_v8.0.2307.473.exe"; DestDir: "{app}"; Flags: onlyifdoesntexist; Components: driverfutronicfs80h;
+Source: "C:\Users\andre.krolow\Dropbox\Projetos COINPEL\Projetos .Net\drivers\atualizacao_futronic_fs80h.exe"; DestDir: "{app}"; Flags: onlyifdoesntexist; Components: driverfutronicfs80h;
+
+Source: "C:\Users\andre.krolow\Dropbox\Projetos COINPEL\Projetos .Net\biosifam\Biosifam\bin\Debug\GrFingerLicenseAgreement.txt"; DestDir: "{app}"; Flags: onlyifdoesntexist; Components: main_griaule
+Source: "C:\Users\andre.krolow\Dropbox\Projetos COINPEL\Projetos .Net\BioSifam\Biosifam\bin\debug\Interop.GrFingerXLib.dll"; DestDir: "{app}"; Flags: onlyifdoesntexist; Components: main_griaule
+Source: "C:\Users\andre.krolow\Dropbox\Projetos COINPEL\Projetos .Net\BioSifam\Biosifam\bin\debug\AxInterop.GrFingerXLib.dll"; DestDir: "{app}"; Flags: onlyifdoesntexist; Components: main_griaule
+Source: "C:\Users\andre.krolow\Dropbox\Projetos COINPEL\Projetos .Net\BioSifam\Biosifam\bin\debug\stdole.dll"; DestDir: "{app}"; Flags: onlyifdoesntexist; Components: main_griaule
+
+; NOTA: Nunca use "Flags: ignoreversion" em arquivos de sistema compartilhados
+
+[Icons]
+Name: "{group}\BioSifam";                                Filename: "{app}\BioSifam.exe"; WorkingDir: "{app}"
+Name: "{group}\Desinstalação\Desinstalador do BioSifam"; Filename: "{uninstallexe}"
+Name: "{commondesktop}\BioSifam";                        Filename: "{app}\BioSifam.exe"; Tasks: desktopicon;
+
+[Run]
+Filename: "msiexec.exe"; Parameters: " /i {tmp}\psqlodbc10.1_x86.exe"; StatusMsg: "Instalando ODBC Postgres ..." ; Description: "Conector do Banco de Dados";
+;Filename: "{app}\GriauleLicenseManager.exe"; Description: "Licenciador Griaule"; Flags: hidewizard  skipifsilent waituntilterminated; Components: main_griaule
+
+Filename: "{app}\driver_digital_persona_v4.3.0.1766_x86_17-08-2010.exe"; Description: "Driver Digital Personal Win32"; Flags: waituntilterminated; Components: driverdigital32;
+Filename: "{app}\driver_digital_persona_v4.3.0.1766_x64_17-08-2010.exe"; Description: "Driver Digital Personal Win64"; Flags: waituntilterminated; Components: driverdigital64;
+Filename: "{app}\driver_futronic_fs80_v4.0.1.5.exe";                     Description: "Driver Futronic fs80";          Flags: waituntilterminated; Components: driverfutronicfs80;
+Filename: "{app}\driver_futronic_fs80h_v8.0.2307.473.exe";               Description: "Driver Futronic fs80h";         Flags: waituntilterminated; Components: driverfutronicfs80h;
+Filename: "{app}\driver_futronic_atualizacao_v13.2.2402.1014_x86.exe";   Description: "Atualização para fs80h";        Flags: waituntilterminated; Components: driverfutronicfs80h;
+
+Filename: "{app}\BioSifam.exe"; Description: "{cm:LaunchProgram,BioSifam.exe}"; Flags: nowait postinstall
+
+

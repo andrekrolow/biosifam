@@ -1,0 +1,66 @@
+; Projeto gerado pelo Assistente de Projeto do Mep Installer.
+; VEJA A DOCUMENTAÇÃO PARA OBTER DETALHES SOBRE A CRIAÇÃO DE PROJETOS DO MEP INSTALLER!
+; 01/08/18 - retirei da instalação framework microsoft e instalador msi - atualizei driver obdc
+; 1.1.0 - novo driver dentro do form, identificação também por senha
+[Setup]
+AppName=BioSifam
+AppVerName=BioSifam 1.9.03 gerado em 23/11/2020
+AppId=BioSifam ID
+AppPublisher=COINPEL
+AppPublisherURL=http://www.pelotas.com.br/coinpel/downloads
+AppSupportURL=http://www.pelotas.com.br/coinpel/downloads
+AppUpdatesURL=http://www.pelotas.com.br/coinpel/downloads
+
+DefaultDirName={pf}\COINPEL\BioSifam
+DefaultGroupName=COINPEL\BioSifam - Registro Biométrico de Atendimentos Médicos da PREVPEL
+
+;InfoAfterFile=ReadMe.rtf
+WizardImageFile=logo_coinpel_big.bmp
+WizardSmallImageFile=logo_coinpel_small.bmp
+
+OutputDir=C:\Users\andre.krolow\Dropbox\Projetos COINPEL\Projetos .Net\BioSifam\setup
+OutputBaseFilename=setup_BioSifam_1.9.03s
+
+SetupIMG=Setup.img
+Compression=lzma/max
+SolidCompression=yes
+PrivilegesRequired=none
+;NotifyUpdate=yes
+UninstallFilesDir={app}\uninst
+
+[Components]
+Name: "main_postg"; Description: "Conector do Banco de Dados"; Types: full; Flags:fixed
+Name: "main_griaule"; Description: "Licenciamento Leitor Digital"; Types: full
+
+[Types]
+Name: "full"; Description: "Instalação Completa"
+Name: "custom"; Description: "Instalação Simplificada"; Flags: iscustom
+
+[Languages]
+Name: "portuguesebr"; MessagesFile: "compiler:Languages\PortugueseBR.isl"
+
+[Tasks]
+Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked
+
+[Files]
+Source: "C:\Users\andre.krolow\Dropbox\Projetos COINPEL\Projetos .Net\BioSifam\Biosifam\bin\debug\BioSifam.exe"; DestDir: "{app}"; Flags: ignoreversion; Permissions: users-modify
+Source: "C:\Users\andre.krolow\Dropbox\Projetos_WEB\downloads\tools\setup_odbc_postgreSQL_x86.exe"; DestDir: "{tmp}"; Flags: onlyifdoesntexist; Components: main_postg
+
+Source: "C:\Users\andre.krolow\Dropbox\Projetos COINPEL\Projetos .Net\biosifam\Biosifam\bin\Debug\GrFingerLicenseAgreement.txt"; DestDir: "{app}"; Flags: onlyifdoesntexist; Components: main_griaule
+Source: "C:\Users\andre.krolow\Dropbox\Projetos COINPEL\Projetos .Net\BioSifam\Biosifam\bin\debug\Interop.GrFingerXLib.dll"; DestDir: "{app}"; Flags: onlyifdoesntexist; Components: main_griaule
+Source: "C:\Users\andre.krolow\Dropbox\Projetos COINPEL\Projetos .Net\BioSifam\Biosifam\bin\debug\AxInterop.GrFingerXLib.dll"; DestDir: "{app}"; Flags: onlyifdoesntexist; Components: main_griaule
+Source: "C:\Users\andre.krolow\Dropbox\Projetos COINPEL\Projetos .Net\BioSifam\Biosifam\bin\debug\stdole.dll"; DestDir: "{app}"; Flags: onlyifdoesntexist; Components: main_griaule
+
+; NOTA: Nunca use "Flags: ignoreversion" em arquivos de sistema compartilhados
+
+[Icons]
+Name: "{group}\BioSifam";                                Filename: "{app}\BioSifam.exe"; WorkingDir: "{app}"
+Name: "{group}\Desinstalação\Desinstalador do BioSifam"; Filename: "{uninstallexe}"
+Name: "{commondesktop}\BioSifam";                        Filename: "{app}\BioSifam.exe"; Tasks: desktopicon;
+
+[Run]
+Filename: "{tmp}\setup_odbc_postgreSQL_x86.exe"; Flags: waituntilterminated; StatusMsg: "Instalando ODBC Postgres ..." ; Description: "Conector do Banco de Dados";
+;Filename: "{tmp}\setup_odbc_postgreSQL_x86.exe"; Parameters: " /i {tmp}\setup_odbc_postgreSQL_x86.exe"; Flags: hidewizard waituntilterminated; StatusMsg: "Instalando ODBC Postgres ..." ; Description: "Conector do Banco de Dados";
+Filename: "{app}\BioSifam.exe"; Description: "{cm:LaunchProgram,BioSifam.exe}"; Flags: postinstall
+
+

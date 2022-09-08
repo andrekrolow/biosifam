@@ -1,0 +1,40 @@
+; Projeto gerado pelo Assistente de Projeto do Mep Installer.
+; VEJA A DOCUMENTAÇÃO PARA OBTER DETALHES SOBRE A CRIAÇÃO DE PROJETOS DO MEP INSTALLER!
+
+[Setup]
+AppName=BioSifam UpGrade 1.6.92
+AppVerName=BioSifam
+AppId=BioSifam ID
+AppPublisher=COINPEL
+AppPublisherURL=http://www.coinpel.com.br/downloads
+AppSupportURL=http://www.coinpel.com.br/downloads
+AppUpdatesURL=http://www.coinpel.com.br/downloads
+
+DefaultDirName={pf}\COINPEL\BioSifam
+DefaultGroupName=COINPEL\BioSifam - Identificação Digital de Consultas
+
+InfoAfterFile=\\fs01\Coinpel\Desenv\Projetos .NET\BioSifam\setup\ReadMeUpGrade.rtf
+WizardImageFile=\\fs01\coinpel\Desenv\Projetos .NET\BioSifam\setup\big_logo.bmp
+WizardSmallImageFile=\\fs01\coinpel\Desenv\Projetos .NET\BioSifam\setup\small_logo.bmp
+
+OutputDir=\\fs01\Coinpel\Desenv\Projetos .NET\BioSifam\setup
+OutputBaseFilename=setup_BioSifamUP_1.6.92
+
+SetupIMG=\\fs01\Coinpel\Desenv\Projetos .NET\BioSifam\setup\Setup.img
+Compression=lzma/max
+SolidCompression=yes
+PrivilegesRequired=none
+NotifyUpdate=yes
+UninstallFilesDir={app}\uninst
+
+[Languages]
+Name: "portuguesebr"; MessagesFile: "compiler:Languages\PortugueseBR.isl"
+
+[Tasks]
+Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked
+
+[Files]
+Source: "\\fs01\Coinpel\Desenv\Projetos .NET\biosifam\Biosifam\bin\Debug\BioSifam.exe"; DestDir: "{app}"; Flags: ignoreversion; Permissions: users-modify
+
+
+
